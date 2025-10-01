@@ -8,6 +8,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.myrecipeapp.MainViewModel
 import eu.tutorials.myrecipeapp.Category
+import java.lang.reflect.Modifier
 
 @Composable
 fun recipeApp(navController: NavHostController){

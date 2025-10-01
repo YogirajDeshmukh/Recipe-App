@@ -46,7 +46,7 @@ fun recipeScreen(
                  navigateToDetailScreen: (Category) -> Unit,
                  viewState: MainViewModel.RecipeState
                  ) {
-    val recipeView: MainViewModel = viewModel()
+
 
 
     Box(modifier = Modifier.fillMaxSize()) {
@@ -113,22 +113,22 @@ fun categoryItem(category: Category,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-//        // 🔁 Animate border color
-//        val infiniteTransition = rememberInfiniteTransition(label = "borderAnim")
-//        val animatedColor by infiniteTransition.animateColor(
-//            initialValue = Color(0xFFFFD580),
-//            targetValue = Color(0xFFFFA726),
-//            animationSpec = infiniteRepeatable(
-//                animation = keyframes {
-//                    durationMillis = 2000
-//                    Color(0xFFFFD580) at 0
-//                    Color(0xFFFFAB40) at 1000
-//                    Color(0xFFFFA726) at 2000
-//                },
-//                repeatMode = RepeatMode.Reverse
-//            ),
-//            label = "color"
-//        )
+        // 🔁 Animate border color
+        val infiniteTransition = rememberInfiniteTransition(label = "borderAnim")
+        val animatedColor by infiniteTransition.animateColor(
+            initialValue = Color(0xFFFFD580),
+            targetValue = Color(0xFFFFA726),
+            animationSpec = infiniteRepeatable(
+                animation = keyframes {
+                    durationMillis = 2000
+                    Color(0xFFFFD580) at 0
+                    Color(0xFFFFAB40) at 1000
+                    Color(0xFFFFA726) at 2000
+                },
+                repeatMode = RepeatMode.Reverse
+            ),
+            label = "color"
+        )
 
 
             Image(
@@ -138,10 +138,10 @@ fun categoryItem(category: Category,
                     .fillMaxSize()
                     .padding(8.dp)
                     .aspectRatio(1f)
-//                    .border(
-////                        BorderStroke(4.dp, animatedColor),
-//                        shape = RoundedCornerShape(15)
-//                    )
+                    .border(
+                        BorderStroke(4.dp, animatedColor),
+                        shape = RoundedCornerShape(15)
+                    )
                     .clip(RoundedCornerShape(16.dp))
             )
 

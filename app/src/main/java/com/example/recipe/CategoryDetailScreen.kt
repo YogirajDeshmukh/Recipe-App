@@ -26,13 +26,13 @@ fun categoryDetailScreen(category: Category){
             .padding(8.dp)
     ){
         Text(category.strCategory)
-        Spacer(Modifier.height(8.dp))
+//        Spacer(Modifier.height(8.dp))
         Image(
             painter = rememberAsyncImagePainter(category.strCategoryThumb),
             contentDescription = "Thumbnain Image",
             modifier = Modifier.fillMaxSize().aspectRatio(1f)
         )
-        Spacer(modifier = Modifier.height(8.dp))
+//        Spacer(modifier = Modifier.height(8.dp))
         Text(category.strCategoryDescription,
             Modifier.verticalScroll(rememberScrollState()),
             textAlign = TextAlign.Justify

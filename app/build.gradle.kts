@@ -68,7 +68,7 @@ dependencies {
     implementation("androidx.compose.animation:animation:1.5.0") // or your Compose version
     implementation(platform("androidx.compose:compose-bom:2024.01.00"))
     implementation("androidx.compose.animation:animation")
-    implementation("androidx.navigation:navigation-compose:2.9.5")
+    implementation(libs.androidx.navigation.compose)
 
 
 
