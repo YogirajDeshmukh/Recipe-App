@@ -8,12 +8,12 @@ import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
@@ -25,6 +25,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -34,7 +35,6 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.rememberAsyncImagePainter
 import com.example.myrecipeapp.MainViewModel
 import eu.tutorials.myrecipeapp.Category
@@ -49,10 +49,21 @@ fun recipeScreen(
 
 
 
-    Box(modifier = Modifier.fillMaxSize()) {
+
+                Box(modifier = Modifier.fillMaxSize()) {
         when {
+
             viewState.loading -> {
-                CircularProgressIndicator(modifier.align(Alignment.Center))
+           Image(
+                painter = painterResource(id = R.drawable.thumbnail),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .wrapContentSize(),
+//                    .blur(32.dp),
+                contentDescription = null,
+                contentScale = ContentScale.Crop)
+
+                CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
             }
 
             viewState.error != null -> {
@@ -80,15 +91,15 @@ fun recipeScreen(
 fun categoryScreen(category: List<Category>,
                    navigateToDetailScreen: (Category) -> Unit
                    ) {
-//    Image(
-//        painter = painterResource(id = R.drawable.images),
-//        modifier = Modifier
-//            .fillMaxSize()
-//            .blur(32.dp),
-//        contentDescription = null,
-//        contentScale = ContentScale.Crop
-//    )
-
+    Image(
+        painter = painterResource(id = R.drawable.bg_img),
+        modifier = Modifier
+            .fillMaxSize()
+            .alpha(0.15f), // 0 = fully transparent, 1 = fully opaque
+        contentDescription = null,
+        contentScale = ContentScale.Crop,
+        alignment = Alignment.Center
+    )
     LazyVerticalGrid(
         GridCells.Fixed(2),
         modifier = Modifier.fillMaxSize(),
