@@ -42,7 +42,7 @@ import eu.tutorials.myrecipeapp.Category
 
 @Composable
 fun recipeScreen(
-
+                modifier: Modifier = Modifier,
                  navigateToDetailScreen: (Category) -> Unit,
                  viewState: MainViewModel.RecipeState
                  ) {
@@ -52,13 +52,13 @@ fun recipeScreen(
     Box(modifier = Modifier.fillMaxSize()) {
         when {
             viewState.loading -> {
-                CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+                CircularProgressIndicator(modifier.align(Alignment.Center))
             }
 
             viewState.error != null -> {
                 Text(
                     text = "Error Occured !\nCheck your internet connection\n\n ${viewState.error}",
-                    modifier = Modifier
+                    modifier
                         .align(Alignment.Center)
                         .padding(32.dp),
                     Color.Red
@@ -66,7 +66,8 @@ fun recipeScreen(
             }
 
             else -> {
-                categoryScreen(viewState.list,navigateToDetailScreen)
+                categoryScreen(viewState.list
+                                 ,navigateToDetailScreen)
             }
 
 
@@ -79,14 +80,14 @@ fun recipeScreen(
 fun categoryScreen(category: List<Category>,
                    navigateToDetailScreen: (Category) -> Unit
                    ) {
-    Image(
-        painter = painterResource(id = R.drawable.images),
-        modifier = Modifier
-            .fillMaxSize()
-            .blur(32.dp),
-        contentDescription = null,
-        contentScale = ContentScale.Crop
-    )
+//    Image(
+//        painter = painterResource(id = R.drawable.images),
+//        modifier = Modifier
+//            .fillMaxSize()
+//            .blur(32.dp),
+//        contentDescription = null,
+//        contentScale = ContentScale.Crop
+//    )
 
     LazyVerticalGrid(
         GridCells.Fixed(2),
@@ -108,7 +109,7 @@ fun categoryItem(category: Category,
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .clickable{navigateToDetailScreen(category)}
+//            .clickable{navigateToDetailScreen(category)}
             .padding(8.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -121,9 +122,9 @@ fun categoryItem(category: Category,
             animationSpec = infiniteRepeatable(
                 animation = keyframes {
                     durationMillis = 2000
-                    Color(0xFFFFD580) at 0
-                    Color(0xFFFFAB40) at 1000
-                    Color(0xFFFFA726) at 2000
+                    Color(0xFFDDD6CD) at 0
+                    Color(0xFFFAFAFA) at 1000
+                    Color(0xFFD0A792) at 2000
                 },
                 repeatMode = RepeatMode.Reverse
             ),
@@ -147,14 +148,14 @@ fun categoryItem(category: Category,
 
             Text(
                 category.strCategory,
-                color = Color.White,
+                color = Color.Black,
                 style = TextStyle(
                     fontWeight = FontWeight.Bold,
                     fontSize = 23.sp
                 )
 
             )
-            Button(onClick = {},
+            Button(onClick = {navigateToDetailScreen(category)},
                 modifier = Modifier
                 ) {
                 Text("View Recipe",
